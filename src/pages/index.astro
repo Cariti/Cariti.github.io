@@ -34,23 +34,29 @@ const featured = [...games, ...projects]
 				>Get in touch</a
 			>
 		</div>
-		<section class="featured">
-			<div class="featured-head">
-				<h2>Featured work</h2>
-				<a href="/portfolio">All projects &rarr;</a>
-			</div>
-			<div class="grid">
-				{
-					featured.map((item, index) =>
-						item.kind === "game" ? (
-							<GameCard entry={item.entry} eager={index < 2} />
-						) : (
-							<ProjectCard entry={item.entry} />
-						),
-					)
-				}
-			</div>
-		</section>
+
+		{
+			featured.length > 0 && (
+				<section class="featured">
+					<div class="featured-head">
+						<h2>Featured work</h2>
+						<a href="/portfolio">All projects &rarr;</a>
+					</div>
+					<div class="grid">
+						{featured.map((item, index) =>
+							item.kind === "game" ? (
+								<GameCard
+									entry={item.entry}
+									eager={index < 2}
+								/>
+							) : (
+								<ProjectCard entry={item.entry} />
+							),
+						)}
+					</div>
+				</section>
+			)
+		}
 	</main>
 </Layout>
 
@@ -85,7 +91,6 @@ const featured = [...games, ...projects]
 		display: flex;
 		gap: 14px;
 		flex-wrap: wrap;
-		justify-content: flex-end;
 	}
 
 	.btn {

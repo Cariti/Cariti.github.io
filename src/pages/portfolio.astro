@@ -30,15 +30,21 @@ const games = (await getCollection("games")).sort(
             </div>
         </section>
 
-        <section class="section">
-            <div class="section-head">
-                <h2>Side project</h2>
-                <p>Personal experiments, tools, and studies.</p>
-            </div>
-            <div class="grid">
-                {projects.map((entry) => <ProjectCard entry={entry} />)}
-            </div>
-        </section>
+        {
+            projects.length > 0 && (
+                <section class="section">
+                    <div class="section-head">
+                        <h2>Side project</h2>
+                        <p>Personal experiments, tools, and studies.</p>
+                    </div>
+                    <div class="grid">
+                        {projects.map((entry) => (
+                            <ProjectCard entry={entry} />
+                        ))}
+                    </div>
+                </section>
+            )
+        }
     </main>
 </Layout>
 

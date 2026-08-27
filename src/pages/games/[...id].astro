@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { getEntry } from "astro:content";
 
 export async function getStaticPaths() {
     const games = await getCollection("games");
@@ -19,7 +18,7 @@ const { Content } = await render(entry);
 
 <Layout title={title}>
     <main>
-        <p class="back"><a href="/portfolio">All work</a></p>
+        <p class="back"><a href="/portfolio">&larr; All projects</a></p>
         <h1>{title}</h1>
         <p class="platforms">{platforms.join(" · ")}</p>
 
