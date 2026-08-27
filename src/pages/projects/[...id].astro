@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+
+    return projects.map((entry) => ({
+        params: { id: entry.id },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+
+const year = entry.data.date.getFullYear();
+
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title}>
+    <main>
+        <p class="back"><a href="/portfolio">All Work</a></p>
+        <h1>{entry.data.title}</h1>
+        <p class="meta">{year} · {entry.data.tags.join(", ")}</p>
+        <article class="prose">
+            <Content />
+        </article>
+    </main>
+</Layout>
+
+<style>
+    .back {
+        margin: 0 0 24px;
+    }
+    .back a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        margin: 0 0 4px;
+    }
+    .meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin: 0 0 40px;
+    }
+
+    .prose :global(h2) {
+        margin-top: 2em;
+        font-size: 1.3rem;
+    }
+    .prose :global(p),
+    .prose :global(li) {
+        color: var(--muted);
+    }
+    .prose :global(a) {
+        color: var(--accent);
+    }
+</style>

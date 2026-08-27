@@ -1,0 +1,151 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+    const games = await getCollection("games");
+
+    return games.map((entry) => ({
+        params: { id: entry.id },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { title, platforms, role, tags, trailer } = entry.data;
+const { Content } = await render(entry);
+---
+
+<Layout title={title}>
+    <main>
+        <p class="back"><a href="/portfolio">All work</a></p>
+        <h1>{title}</h1>
+        <p class="platforms">{platforms.join(" · ")}</p>
+
+        {
+            trailer && (
+                <div class="trailer">
+                    <iframe
+                        src={trailer}
+                        title={`${title} trailer`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    />
+                </div>
+            )
+        }
+
+        <div class="details">
+            <section class="contributions">
+                <h2>Contributions</h2>
+                <Content />
+            </section>
+            <div class="side">
+                <section class="box">
+                    <h2>Role</h2>
+                    <p>{role}</p>
+                </section>
+
+                <section class="box">
+                    <h2>Tags</h2>
+                    <ul class="tags">
+                        {tags.map((tag) => <li>{tag}</li>)}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .back {
+        margin: 0 0 24px;
+    }
+
+    .back a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        margin: 0 0 4px;
+    }
+
+    .platforms {
+        color: var(--muted);
+        margin: 0 0 40px;
+    }
+
+    .trailer {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        margin-bottom: 40px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .trailer iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    h2 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        color: var(--accent);
+        margin: 0 0 12px;
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        align-items: start;
+    }
+
+    .side {
+        display: grid;
+        gap: 20px;
+        align-content: start;
+    }
+
+    .contributions,
+    .box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px 24px;
+    }
+
+    .contributions :global(p),
+    .contributions :global(li) {
+        color: var(--muted);
+    }
+
+    @media (max-width: 700px) {
+        .details{
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .tags {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .tags li {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+        border: 1px solid var(--muted);
+    }
+</style>

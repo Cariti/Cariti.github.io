@@ -1,0 +1,63 @@
+---
+const links = [
+    { href: "/portfolio", label: "Work" },
+    { href: "/about", label: "About" },
+];
+---
+
+<header>
+    <div class="inner">
+        <a href="/" class="brand">Ivan Caridad</a>
+        <nav>
+            {links.map((link) => <a href={link.href}>{link.label}</a>)}
+            <a class="resume" href="/resume.pdf" target="_blank">Résumé</a>
+        </nav>
+    </div>
+</header>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .inner {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    .brand {
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 0.9rem;
+    }
+
+    nav a {
+        text-decoration: none;
+    }
+
+    nav a:hover {
+        color: var(--text);
+    }
+
+    nav a.resume {
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 6px 12px;
+        border-radius: 999px;
+    }
+</style>

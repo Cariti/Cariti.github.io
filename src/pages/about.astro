@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+---
+
+<Layout title="About">
+    <main>
+        <h1>About</h1>
+        <p>
+            I'm Ivan Caridad, a technical artist working in shaders, real-time
+            VFX and pipeline tools. This page will hold my full bio and
+            experience.
+        </p>
+        <p><a href="/">Back Home</a></p>
+    </main>
+</Layout>

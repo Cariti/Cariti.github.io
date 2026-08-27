@@ -1,0 +1,105 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+    entry: CollectionEntry<"games">;
+    eager?: boolean;
+}
+
+const { entry, eager = false } = Astro.props;
+const { title, cover, platforms, hoverVideo, tags } = entry.data;
+---
+
+<a class="game-card" href={`/games/${entry.id}`}>
+    <div class="thumb">
+        <Image
+            src={cover}
+            alt={`${title} cover art`}
+            loading={eager ? "eager" : "lazy"}
+        />
+        <video src={hoverVideo} loop muted playsinline preload="none"></video>
+    </div>
+    <div class="body">
+        <h3>{title}</h3>
+        <p class="platforms">{tags.join(" · ")}</p>
+    </div>
+</a>
+
+<script>
+    const cards = document.querySelectorAll(".game-card");
+
+    cards.forEach((card) => {
+        const video = card.querySelector("video");
+        if (!video) return;
+
+        video.muted = true;
+
+        card.addEventListener("mouseenter", () => {
+            video.play();
+        });
+        card.addEventListener("mouseleave", () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+    });
+</script>
+
+<style>
+    .game-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        transition:
+            border-color 0.2s,
+            transform 0.2s;
+    }
+
+    .game-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+    }
+
+    .thumb {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        background-color: var(--surface);
+    }
+
+    .thumb img,
+    .thumb video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .thumb video {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .game-card:hover .thumb video {
+        opacity: 1;
+    }
+
+    .body {
+        padding: 16px;
+    }
+
+    h3 {
+        margin: 0 0 4px;
+        font-size: 1.1rem;
+    }
+
+    .platforms {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.8rem;
+    }
+</style>

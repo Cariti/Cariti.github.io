@@ -1,0 +1,87 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+    entry: CollectionEntry<"projects">;
+}
+
+const { entry } = Astro.props;
+const { title, description, tags, cover } = entry.data;
+---
+
+<a class="card" href={`/projects/${entry.id}`}>
+    <div class="thumb">
+        {cover && <Image src={cover} alt={`${title} thumbnail`} loading={"lazy"}/>}
+    </div>
+    <div class="body">
+        <div class="tags">
+            {tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+        <h3>{title}</h3>
+        <p>{description}</p>
+    </div>
+</a>
+
+<style>
+    .card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        transition:
+            transform 0.2s,
+            border-color 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+    }
+
+    .thumb {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        background: linear-gradient(135deg, var(--accent), var(--surface));
+    }
+    .thumb img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .body {
+        padding: 16px;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .tag {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        color: var(--muted);
+    }
+
+    h3 {
+        margin: 0 0 6px;
+        font-size: 1.1rem;
+    }
+
+    p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+    }
+</style>

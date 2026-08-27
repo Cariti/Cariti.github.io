@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import GameCard from "../components/GameCard.astro";
+
+const projects = (await getCollection("projects")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const games = (await getCollection("games")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Layout title="Work">
+    <main>
+        <h1>Work</h1>
+
+        <section class="section">
+            <div class="section-head">
+                <h2>Shipped games</h2>
+                <p>Games I've worked on and my contribution to each.</p>
+            </div>
+            <div class="grid">
+                {
+                    games.map((entry, index) => (
+                        <GameCard entry={entry} eager={index < 2} />
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-head">
+                <h2>Side project</h2>
+                <p>Personal experiments, tools, and studies.</p>
+            </div>
+            <div class="grid">
+                {projects.map((entry) => <ProjectCard entry={entry} />)}
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    h1 {
+        margin-bottom: 48px;
+    }
+
+    .section + .section {
+        margin-top: 72px;
+    }
+
+    .section-head {
+        margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+        margin: 0 0 4px;
+        font-size: 1.5rem;
+    }
+
+    .section-head p {
+        margin: 0;
+        color: var(--muted);
+    }
+</style>
