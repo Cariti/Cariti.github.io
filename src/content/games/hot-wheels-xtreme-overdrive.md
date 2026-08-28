@@ -1,9 +1,9 @@
 ---
-title: "Hot Wheels Xtream Overdrive"
+title: "Hot Wheels Xtreme Overdrive"
 date: 2025-10-29
-cover: "../../assets/games/hot-wheels-xtream-overdrive/HWXO_cover.jpg"
-platforms: ["Android", "In-car infotainment", AirConsole"]
-hoverVideo: "/games/hot-wheels-xtream-overdrive/hover.mp4"
+cover: "../../assets/games/hot-wheels-xtreme-overdrive/HWXO_cover.jpg"
+platforms: ["Android", "In-car infotainment", "AirConsole"]
+hoverVideo: "/games/hot-wheels-xtreme-overdrive/HWXO_hover.mp4"
 trailer: "https://www.youtube.com/embed/ee5uKTAfbCU"
 role: "Technical Artist"
 tags: ["Shaders", "Optimization", "Pipeline", "Rendering"]

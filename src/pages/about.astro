@@ -1,18 +1,367 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
-
-const projects = await getCollection("projects");
+import profile from "../assets/about/profile.jpg";
+import { Image } from "astro:assets";
 ---
 
 <Layout title="About">
     <main>
         <h1>About</h1>
-        <p>
-            I'm Ivan Caridad, a technical artist working in shaders, real-time
-            VFX and pipeline tools. This page will hold my full bio and
-            experience.
-        </p>
-        <p><a href="/">Back Home</a></p>
+        <section class="intro">
+            <div class="intro-text">
+                <p>
+                    I'm a Technical Artist specialized in shader development,
+                    optimization and rigging. My goal is always to bridge the
+                    gap between art and tech — helping artists bring their
+                    vision to life while ensuring performance, functionality and
+                    efficiency.
+                </p>
+                <p>
+                    I thrive in team environments where I can support others by
+                    making their workflow smoother and more effective.
+                    Colleagues often describe me as detail-oriented,
+                    collaborative and committed to delivering high-quality
+                    results.
+                </p>
+                <p>
+                    Outside of work, you'll most probably find me playing Dark
+                    Souls — I'm nowadays trying to complete all the
+                    achievements. My next goal is no-hitting the game...
+                </p>
+            </div>
+            <Image
+                class="intro-photo"
+                src={profile}
+                alt="Ivan Caridad"
+                width={560}
+            />
+        </section>
+
+        <section class="experience">
+            <h2>Experience</h2>
+            <ul class="roles">
+                <li>
+                    <div class="role-head">
+                        <h3>
+                            Pipeline TD · <span class="company"
+                                >Mago Production</span
+                            >
+                        </h3>
+                        <span class="dates"> Mar 2026 &ndash; Present</span>
+                    </div>
+                    <p>
+                        Building Tools for DCCs (Blender, Photoshop, Toon Boom
+                        Harmony) and NAS file-automation for production content.
+                        Python, HTML, JS, CSS.
+                    </p>
+                </li>
+
+                <li>
+                    <div class="role-head">
+                        <h3>
+                            Technical Art Teacher · <span class="company"
+                                >LEVEL UP [Game Dev Hub]</span
+                            >
+                        </h3>
+                        <span class="dates">Nov 2025 &ndash; Jul 2026</span>
+                    </div>
+                    <p>Teaching technical art in Unity.</p>
+                </li>
+
+                <li>
+                    <div class="role-head">
+                        <h3>
+                            Technical Artist · <span class="company"
+                                >Petoons Studio</span
+                            >
+                        </h3>
+                        <span class="dates"> Dec 2022 &ndash; Aug 2025</span>
+                    </div>
+                    <p>
+                        Shaders, optimization, rigging, implementation,
+                        rendering, pipeline, cloth &amp; rigid-body simulation,
+                        some VFX.
+                    </p>
+                </li>
+
+                <li>
+                    <div class="role-head">
+                        <h3>
+                            Character Rigger · <span class="company"
+                                >Studio Kimchi</span
+                            >
+                        </h3>
+                        <span class="dates"> Nov 2021 &ndash; Jan 2022</span>
+                    </div>
+                    <p>Internship. Rigging and skinning characters.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="skills">
+            <h2>Skills</h2>
+            <div class="skill-groups">
+                <div class="skill-group">
+                    <h3>Software &amp; Tools</h3>
+                    <ul>
+                        <li>Maya</li>
+                        <li>Blender</li>
+                        <li>Photoshop</li>
+                        <li>Substance</li>
+                        <li>RenderDoc</li>
+                        <li>Git</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h3>Engines</h3>
+                    <ul>
+                        <li>Unity</li>
+                        <li>Unreal</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>Python (PyMEL, bpy)</li>
+                        <li>C#</li>
+                        <li>Shader Graph</li>
+                        <li>HLSL</li>
+                        <li>HTML/JS/CSS</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h3>Domains</h3>
+                    <ul>
+                        <li>Shaders</li>
+                        <li>Optimization</li>
+                        <li>Real-time VFX</li>
+                        <li>Rigging</li>
+                        <li>Pipeline &amp; Tools</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2>Contact</h2>
+            <p>Open to connecting &ndash; reach me here:</p>
+            <ul class="links">
+                <li>
+                    <button
+                        type="button"
+                        class="copy-btn"
+                        data-copy="caridadivan.3d@gmail.com">Copy email</button
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://www.linkedin.com/in/ivan-caridad/"
+                        target="_blank"
+                        rel="noopener">LinkedIn</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://github.com/Cariti"
+                        target="_blank"
+                        rel="noopener">GitHub</a
+                    >
+                </li>
+            </ul>
+        </section>
     </main>
 </Layout>
+
+<script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".copy-btn");
+
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(btn.dataset.copy ?? "");
+
+                const original = btn.textContent;
+                btn.textContent = "Email copied!";
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    btn.textContent = original;
+                    btn.disabled = false;
+                }, 1500);
+            } catch {
+                btn.textContent = "Press Ctrl+C to copy";
+            }
+        });
+    });
+</script>
+
+<style>
+    main h2 {
+        font-size: 1.5rem;
+        margin: 0 0 24px;
+    }
+
+    section + section {
+        margin-top: 72px;
+        padding-top: 40px;
+        border-top: 1px solid var(--border);
+    }
+
+    /* Introdution */
+    .intro {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .intro-text {
+        max-width: 65ch;
+    }
+
+    .intro-photo {
+        flex-shrink: 0;
+        width: 280px;
+        height: 280px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    @media (max-width: 700px) {
+        .intro {
+            flex-direction: column-reverse;
+            gap: 24px;
+        }
+    }
+
+    .intro p {
+        margin: 0 0 16px;
+        color: var(--muted);
+    }
+
+    /* Experience */
+    .roles {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .roles li {
+        padding: 16px 20px;
+        margin-bottom: 16px;
+        background: var(--surface);
+        border-radius: 12px;
+    }
+
+    .roles li:last-child {
+        margin-bottom: 0;
+    }
+
+    .role-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .role-head h3 {
+        margin: 0;
+        font-size: 1.05rem;
+    }
+
+    .company {
+        color: var(--muted);
+        font-weight: 400;
+    }
+
+    .dates {
+        color: var(--muted);
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .roles li p {
+        margin: 6px 0 0;
+        color: var(--muted);
+    }
+
+    /* Skills grid */
+
+    .skill-groups {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 32px;
+    }
+
+    .skill-group h3 {
+        margin: 0 0 12px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+    }
+
+    .skill-group ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .skill-group li {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 4px 12px;
+        font-size: 0.85rem;
+    }
+
+    /* Contact Buttons */
+    .contact p {
+        color: var(--muted);
+        margin: 0 0 20px;
+    }
+
+    .links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .links a,
+    .copy-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: none;
+        color: var(--text);
+        font: inherit;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+            border-color 0.2s,
+            color 0.2s;
+    }
+
+    .links a:hover,
+    .copy-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    .copy-btn:disabled {
+        border-color: var(--accent);
+        color: var(--accent);
+        cursor: default;
+    }
+</style>
