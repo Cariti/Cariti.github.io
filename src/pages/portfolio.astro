@@ -24,7 +24,7 @@ const games = (await getCollection("games")).sort(
             <div class="grid">
                 {
                     games.map((entry, index) => (
-                        <GameCard entry={entry} eager={index < 2} />
+                        <GameCard entry={entry} eager={index < 6} />
                     ))
                 }
             </div>

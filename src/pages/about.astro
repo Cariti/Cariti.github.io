@@ -34,6 +34,7 @@ import { Image } from "astro:assets";
                 src={profile}
                 alt="Ivan Caridad"
                 width={560}
+                loading="eager"
             />
         </section>
 
@@ -41,59 +42,173 @@ import { Image } from "astro:assets";
             <h2>Experience</h2>
             <ul class="roles">
                 <li>
-                    <div class="role-head">
-                        <h3>
-                            Pipeline TD · <span class="company"
-                                >Mago Production</span
-                            >
-                        </h3>
-                        <span class="dates"> Mar 2026 &ndash; Present</span>
-                    </div>
-                    <p>
-                        Building Tools for DCCs (Blender, Photoshop, Toon Boom
-                        Harmony) and NAS file-automation for production content.
-                        Python, HTML, JS, CSS.
-                    </p>
+                    <details>
+                        <summary>
+                            <div class="role-head">
+                                <h3>
+                                    Pipeline TD <span class="company">
+                                        · Mago Production</span
+                                    >
+                                </h3>
+                                <span class="dates"
+                                    >Mar 2026 &ndash; Present</span
+                                >
+                            </div>
+                            <p class="role-summary">
+                                Production pipeline and internal tooling for the
+                                studio's art teams.
+                            </p>
+                        </summary>
+                        <p class="role-detail">
+                            Build and maintain the pipeline that connects
+                            production tracking, asset management, and DCC
+                            software into one workflow — Python services,
+                            artist-friendly plugins, and the server file
+                            management automation behind them.
+                        </p>
+                        <ul class="role-bullets">
+                            <li>
+                                Build and maintain the production internal tools
+                                for artists across the studio, focused on
+                                automation and workflow efficiency.
+                            </li>
+                            <li>
+                                Built artist-friendly tools that reduce friction
+                                with the technical sides of the production.
+                            </li>
+                            <li>
+                                Integrated Photoshop, Toon Boom Harmony and
+                                Blender into a unified workflow.
+                            </li>
+                            <li>
+                                Developed a Python pipeline service for
+                                production tracking, integrated with Kitsu.
+                            </li>
+                        </ul>
+                    </details>
                 </li>
 
                 <li>
-                    <div class="role-head">
-                        <h3>
-                            Technical Art Teacher · <span class="company"
-                                >LEVEL UP [Game Dev Hub]</span
-                            >
-                        </h3>
-                        <span class="dates">Nov 2025 &ndash; Jul 2026</span>
-                    </div>
-                    <p>Teaching technical art in Unity.</p>
+                    <details>
+                        <summary>
+                            <div class="role-head">
+                                <h3>
+                                    Technical Art Teacher <span class="company">
+                                        · Level Up [Game Dev Hub]</span
+                                    >
+                                </h3>
+                                <span class="dates"
+                                    >Nov 2025 &ndash; Jul 2026</span
+                                >
+                            </div>
+                            <p class="role-summary">
+                                Teaching technical art in Unity.
+                            </p>
+                        </summary>
+                        <p class="role-detail">
+                            Teach technical art in Unity, from shader and
+                            modeling fundamentals to optimization and
+                            render-pipeline customization. Build the curriculum
+                            and mentor students through the full art-to-engine
+                            workflow.
+                        </p>
+                        <ul class="role-bullets">
+                            <li>
+                                Teach shaders, optimization, render pipelines,
+                                VFX, and lighting, with an emphasis on best
+                                practices.
+                            </li>
+                            <li>
+                                Design course material and hands-on projects
+                                covering the full art-to-engine workflow.
+                            </li>
+                        </ul>
+                    </details>
                 </li>
 
                 <li>
-                    <div class="role-head">
-                        <h3>
-                            Technical Artist · <span class="company"
-                                >Petoons Studio</span
-                            >
-                        </h3>
-                        <span class="dates"> Dec 2022 &ndash; Aug 2025</span>
-                    </div>
-                    <p>
-                        Shaders, optimization, rigging, implementation,
-                        rendering, pipeline, cloth &amp; rigid-body simulation,
-                        some VFX.
-                    </p>
+                    <details>
+                        <summary>
+                            <div class="role-head">
+                                <h3>
+                                    Technical Artist <span class="company">
+                                        · Petoons Studio</span
+                                    >
+                                </h3>
+                                <span class="dates">
+                                    Dec 2022 &ndash; Aug 2025</span
+                                >
+                            </div>
+                            <p class="role-summary">
+                                Technical artist across multiple shipped console
+                                and mobile titles with global IPs.
+                            </p>
+                        </summary>
+                        <p class="role-detail">
+                            Worked across shipped titles under tight console and
+                            mobile performance budgets — shading, rendering
+                            optimization, character art tech, and the art
+                            workflow the teams worked with.
+                        </p>
+                        <ul class="role-bullets">
+                            <li>
+                                Developed shader sets under strict Switch and
+                                mobile GPU budgets.
+                            </li>
+                            <li>
+                                Handled rendering and memory optimization —
+                                frame profiling, batching / GPU instancing,
+                                impostors; ~30% draw-time reduction on one
+                                title.
+                            </li>
+                            <li>
+                                Rigged and skinned characters in Maya. Set up
+                                in-engine cloth and rigid-body physics; built
+                                particle VFX.
+                            </li>
+                            <li>
+                                Defined the studio art integration workflow and
+                                automated base-prefab creation to remove
+                                shader/material mismatches.
+                            </li>
+                        </ul>
+                    </details>
                 </li>
 
                 <li>
-                    <div class="role-head">
-                        <h3>
-                            Character Rigger · <span class="company"
-                                >Studio Kimchi</span
-                            >
-                        </h3>
-                        <span class="dates"> Nov 2021 &ndash; Jan 2022</span>
-                    </div>
-                    <p>Internship. Rigging and skinning characters.</p>
+                    <details>
+                        <summary>
+                            <div class="role-head">
+                                <h3>
+                                    Character Rigger <span class="company">
+                                        · Studio Kimchi</span
+                                    >
+                                </h3>
+                                <span class="dates">
+                                    Nov 2021 &ndash; Jan 2022</span
+                                >
+                            </div>
+                            <p class="role-summary">
+                                Internship &ndash; Rigging and skinning
+                                characters.
+                            </p>
+                        </summary>
+                        <p class="role-detail">
+                            First studio role, an internship focused on
+                            character rigging and skinning for animation
+                            production.
+                        </p>
+                        <ul class="role-bullets">
+                            <li>
+                                Rigged and skinned characters in Maya for
+                                animation production.
+                            </li>
+                            <li>
+                                Followed the studio's rig conventions and
+                                iterated on animator feedback.
+                            </li>
+                        </ul>
+                    </details>
                 </li>
             </ul>
         </section>
@@ -147,7 +262,7 @@ import { Image } from "astro:assets";
 
         <section class="contact">
             <h2>Contact</h2>
-            <p>Open to connecting &ndash; reach me here:</p>
+            <p>Let's connect! You can find me here:</p>
             <ul class="links">
                 <li>
                     <button
@@ -215,7 +330,6 @@ import { Image } from "astro:assets";
         display: flex;
         gap: 40px;
         align-items: flex-start;
-        justify-content: space-between;
     }
 
     .intro-text {
@@ -223,6 +337,7 @@ import { Image } from "astro:assets";
     }
 
     .intro-photo {
+        margin-left: auto;
         flex-shrink: 0;
         width: 280px;
         height: 280px;
@@ -249,23 +364,49 @@ import { Image } from "astro:assets";
         margin: 0;
     }
 
-    .roles li {
+    .roles > li {
         padding: 16px 20px;
         margin-bottom: 16px;
         background: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 12px;
+        transition:
+            transform 0.2s,
+            border-color 0.2;
     }
 
-    .roles li:last-child {
+    .roles > li:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+    }
+
+    .roles > li:last-child {
         margin-bottom: 0;
+    }
+
+    .roles > li:has(details[open]) {
+        border-color: var(--border);
+        border-left: 3px solid var(--accent);
+        padding-left: 18px;
     }
 
     .role-head {
         display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 16px;
+        align-items: center;
+        gap: 12px;
         flex-wrap: wrap;
+    }
+
+    .role-head::before {
+        content: "▸";
+        flex-shrink: 0;
+        color: var(--accent);
+        font-size: 1.5rem;
+        transition: transform 0.2s;
+    }
+
+    details[open] .role-head::before {
+        transform: rotate(90deg);
     }
 
     .role-head h3 {
@@ -279,14 +420,42 @@ import { Image } from "astro:assets";
     }
 
     .dates {
+        margin-left: auto;
         color: var(--muted);
         font-size: 0.85rem;
         white-space: nowrap;
     }
 
-    .roles li p {
-        margin: 6px 0 0;
+    .roles summary {
+        display: block;
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .roles summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .role-summary {
+        margin: 8px 0 0;
         color: var(--muted);
+    }
+
+    .role-detail {
+        margin: 14px 0 0;
+        color: var(--text);
+    }
+
+    .role-bullets {
+        margin: 12px 0 0;
+        padding-left: 32px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    .role-bullets li {
+        margin: 4px 0;
     }
 
     /* Skills grid */

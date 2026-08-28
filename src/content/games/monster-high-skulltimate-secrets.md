@@ -1,5 +1,5 @@
 ---
-title: "Monster High Skulltimate Secrets"
+title: "Monster High™ Skulltimate Secrets™"
 date: 2024-10-29
 cover: "../../assets/games/monster-high-skulltimate-secrets/MHSS_cover.jpg"
 platforms: ["Switch", "PC", "PS5", "PS4", "Xbox"]
