@@ -1,0 +1,118 @@
+---
+
+---
+
+<section class="contact" id="contact">
+    <h2>Contact</h2>
+    <p>Let's connect! You can find me here:</p>
+    <ul class="links">
+        <li>
+            <button
+                type="button"
+                class="copy-btn"
+                data-copy="caridadivan.3d@gmail.com">Copy email</button
+            >
+        </li>
+        <li>
+            <a
+                href="https://www.linkedin.com/in/ivan-caridad/"
+                target="_blank"
+                rel="noopener">LinkedIn</a
+            >
+        </li>
+        <li>
+            <a href="https://github.com/Cariti" target="_blank" rel="noopener"
+                >GitHub</a
+            >
+        </li>
+    </ul>
+</section>
+
+<script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".copy-btn");
+
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(btn.dataset.copy ?? "");
+
+                const original = btn.textContent;
+                btn.textContent = "Email copied!";
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    btn.textContent = original;
+                    btn.disabled = false;
+                }, 1500);
+            } catch {
+                btn.textContent = "Press Ctrl+c to copy";
+            }
+        });
+    });
+</script>
+
+
+<style>
+    .contact {
+        margin-top: 72px;
+        padding-top: 40px;
+        border-top: 1px solid var(--border);
+    }
+
+    .contact h2 {
+        margin-top: 0;
+    }
+
+    .contact p {
+        color: var(--muted);
+        margin: 0 0 20px;
+    }
+
+    .links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .links a,
+    .copy-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px 12px;
+        border: 1px solid var(--accent);
+        border-radius: 999px;
+        background: none;
+        color: var(--text);
+        font: inherit;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+            transform 0.2s,
+            color 0.2s,
+            background 0.2s;
+    }
+
+    .links a:hover,
+    .copy-btn:hover {
+        transform: scale(1.05);
+        color: var(--accent);
+    }
+    
+    .links a:active,
+    .copy-btn:active {
+        transform: scale(0.98);
+        color: var(--text);
+        background: var(--accent);
+    }
+
+    .copy-btn:disabled {
+        transform: scale(0.98);
+        color: var(--accent);
+        cursor: default;
+        background: none;
+    }
+</style>

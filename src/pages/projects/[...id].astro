@@ -60,4 +60,12 @@ const { Content } = await render(entry);
     .prose :global(a) {
         color: var(--accent);
     }
+
+    .prose :global(img) {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 16px 0;
+    }
 </style>

@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import GameCard from "../components/GameCard.astro";
+import Contact from "../components/Contact.astro";
 
 const games = (await getCollection("games")).map((entry) => ({
 	kind: "game" as const,
@@ -30,7 +31,7 @@ const featured = [...games, ...projects]
 		</p>
 		<div class="actions">
 			<a class="btn btn-primary" href="/portfolio">View work</a>
-			<a class="btn" href="mailto:caridadivan.3d@gmail.com"
+			<a class="btn" href="#contact"
 				>Get in touch</a
 			>
 		</div>
@@ -57,6 +58,8 @@ const featured = [...games, ...projects]
 				</section>
 			)
 		}
+
+		<Contact />
 	</main>
 </Layout>
 
@@ -95,7 +98,7 @@ const featured = [...games, ...projects]
 
 	.btn {
 		display: inline-block;
-		padding: 12px 22px;
+		padding: 12px 22px 15px;
 		border: 1px solid var(--border);
 		border-radius: 999px;
 		font-weight: 600;
@@ -116,7 +119,7 @@ const featured = [...games, ...projects]
 	.btn:hover {
 		transform: scale(1.1);
 	}
-	.btn:active{
+	.btn:active {
 		transform: scale(0.98);
 	}
 
@@ -126,7 +129,7 @@ const featured = [...games, ...projects]
 		color: var(--accent);
 	}
 
-	.btn-primary:hover{
+	.btn-primary:hover {
 		filter: brightness(1.2);
 	}
 

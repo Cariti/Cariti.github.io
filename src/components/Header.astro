@@ -10,7 +10,7 @@ const links = [
         <a href="/" class="brand">Ivan Caridad</a>
         <nav>
             {links.map((link) => <a href={link.href}>{link.label}</a>)}
-            <a class="resume" href="/IvanCaridad_CV_TechArt.pdf" target="_blank">Résumé</a>
+            <a class="resume" href="/IvanCaridad_CV_TechArt.pdf" target="_blank">Resume</a>
         </nav>
     </div>
 </header>
@@ -29,7 +29,7 @@ const links = [
         margin: 0 auto;
         padding: 16px 24px;
         display: flex;
-        align-items: center;
+        align-items:baseline;
         justify-content: space-between;
 
     }
@@ -41,7 +41,7 @@ const links = [
 
     nav {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         gap: 20px;
         font-size: 0.9rem;
     }
@@ -55,9 +55,12 @@ const links = [
     }
 
     nav a.resume {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         color: var(--text);
         border: 1px solid var(--border);
-        padding: 6px 12px;
+        padding: 6px 12px 10px;
         border-radius: 999px;
     }
 </style>
