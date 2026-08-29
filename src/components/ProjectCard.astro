@@ -4,15 +4,24 @@ import { Image } from "astro:assets";
 
 interface Props {
     entry: CollectionEntry<"projects">;
+    eager?: boolean;
 }
 
-const { entry } = Astro.props;
+const { entry, eager } = Astro.props;
 const { title, description, tags, cover } = entry.data;
 ---
 
 <a class="card" href={`/projects/${entry.id}`}>
     <div class="thumb">
-        {cover && <Image src={cover} alt={`${title} thumbnail`} loading={"lazy"}/>}
+        {
+            cover && (
+                <Image
+                    src={cover}
+                    alt={`${title} thumbnail`}
+                    loading={eager ? "eager" : "lazy"}
+                />
+            )
+        }
     </div>
     <div class="body">
         <div class="tags">

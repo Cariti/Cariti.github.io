@@ -5,55 +5,63 @@ import ProjectCard from "../components/ProjectCard.astro";
 import GameCard from "../components/GameCard.astro";
 import Contact from "../components/Contact.astro";
 
-const games = (await getCollection("games")).map((entry) => ({
-	kind: "game" as const,
-	entry,
-}));
+const games = await getCollection("games");
 
-const projects = (await getCollection("projects")).map((entry) => ({
-	kind: "project" as const,
-	entry,
-}));
+const projects = await getCollection("projects");
 
-const featured = [...games, ...projects]
-	.filter((item) => item.entry.data.featured)
-	.sort((a, b) => b.entry.data.date.valueOf() - a.entry.data.date.valueOf());
+const featuredGames = games
+	.filter((item) => item.data.featured)
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featuredProjects = projects
+	.filter((item) => item.data.featured)
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Layout>
 	<main>
-		<p class="eyebrow">Available for work</p>
-		<h1>Ivan Caridad</h1>
-		<p class="role">Technical Artist</p>
-		<p class="tagline">
-			I build shaders, real-time VFX and the tools that let artists ship
-			them.
-		</p>
-		<div class="actions">
-			<a class="btn btn-primary" href="/portfolio">View work</a>
-			<a class="btn" href="#contact"
-				>Get in touch</a
-			>
+		<div class="hero">
+			<p class="eyebrow">Available for work</p>
+			<h1>Ivan Caridad</h1>
+			<p class="role">Technical Artist</p>
+			<p class="tagline">
+				Building shaders, programming tools, optimization and other
+				types of black magic...
+			</p>
+			<div class="actions">
+				<a class="btn btn-primary" href="/portfolio">View work</a>
+				<a class="btn" href="/about">About</a>
+				<a class="btn" href="#contact">Get in touch</a>
+			</div>
 		</div>
 
 		{
-			featured.length > 0 && (
+			featuredGames.length > 0 && (
 				<section class="featured">
 					<div class="featured-head">
 						<h2>Featured work</h2>
+						<a href="/portfolio">All games &rarr;</a>
+					</div>
+					<div class="grid">
+						{featuredGames.map((game, index) => (
+							<GameCard entry={game} eager={index < 5} />
+						))}
+					</div>
+				</section>
+			)
+		}
+
+		{
+			featuredProjects.length > 0 && (
+				<section class="featured">
+					<div class="featured-head">
+						<h2>Featured personal projects</h2>
 						<a href="/portfolio">All projects &rarr;</a>
 					</div>
 					<div class="grid">
-						{featured.map((item, index) =>
-							item.kind === "game" ? (
-								<GameCard
-									entry={item.entry}
-									eager={index < 2}
-								/>
-							) : (
-								<ProjectCard entry={item.entry} />
-							),
-						)}
+						{featuredProjects.map((project, index) => (
+							<ProjectCard entry={project} eager={index < 5} />
+						))}
 					</div>
 				</section>
 			)
@@ -64,6 +72,10 @@ const featured = [...games, ...projects]
 </Layout>
 
 <style>
+	.hero {
+		text-align: center;
+	}
+
 	.eyebrow {
 		text-transform: uppercase;
 		letter-spacing: 0.15em;
@@ -87,13 +99,14 @@ const featured = [...games, ...projects]
 	.tagline {
 		color: var(--muted);
 		max-width: 45ch;
-		margin: 24px 0 32px;
+		margin: 24px auto 32px;
 	}
 
 	.actions {
 		display: flex;
 		gap: 14px;
 		flex-wrap: wrap;
+		justify-content: center;
 	}
 
 	.btn {

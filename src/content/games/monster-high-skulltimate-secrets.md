@@ -3,11 +3,11 @@ title: "Monster High™ Skulltimate Secrets™"
 date: 2024-10-29
 cover: "../../assets/games/monster-high-skulltimate-secrets/MHSS_cover.jpg"
 platforms: ["Switch", "PC", "PS5", "PS4", "Xbox"]
-hoverVideo: "/games/monster-high-skulltimate-secrets/hover.mp4"
+hoverVideo: "/games/monster-high-skulltimate-secrets/MHSS_hover.mp4"
 trailer: "https://www.youtube.com/embed/lKfmeOgUHns"
 role: "Technical Artist"
 tags: ["Shaders", "Optimization", "Rigging", "VFX"]
-featured: false
+featured: true
 ---
 The core challenge: running an open world on Nintendo Switch. The memory and GPU budget drove every asset and rendering decision.
 
