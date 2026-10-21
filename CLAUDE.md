@@ -3,10 +3,12 @@
 When starting the dev server, use background mode:
 
 ```
-astro dev --background
+npx astro dev --background
 ```
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+Manage the background server with `npx astro dev stop`, `npx astro dev status`, and `npx astro dev logs`.
+
+Astro is installed locally (not globally), so a bare `astro` command fails in PowerShell. Always prefix it with `npx`.
 
 ## Documentation
 

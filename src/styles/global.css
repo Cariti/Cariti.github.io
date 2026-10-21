@@ -6,6 +6,8 @@
     --accent: #7ed957;
     --border: #2E2C27;
     --maxw: 1100px;
+    --font-body: var(--font-manrope), sans-serif;
+    --font-heading: var(--font-sora), sans-serif;
 }
 
 * {
@@ -19,19 +21,24 @@ html {
 
 
 @media (prefers-reduced-motion: reduce) {
-    html{
+    html {
         scroll-behavior: auto;
     }
 }
 
 main {
     flex: 1;
-width: 100%;
+    width: 100%;
     max-width: var(--maxw);
     margin: 0 auto;
     padding: 80px 24px;
 }
 
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+}
 
 body {
     margin: 0;
@@ -40,7 +47,7 @@ body {
     flex-direction: column;
     background: var(--bg);
     color: var(--text);
-    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.6;
 }
 
